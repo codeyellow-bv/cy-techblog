@@ -6,3 +6,19 @@ copyright = "Code Yellow BV"
 
 [Author]
 	name = "Code Yellow BV"
+
+[Permalinks]
+	blog = "/:year/:month/:filename/"
+	code = "/:filename/"
+
+[Taxonomies]
+	tag = "tags"
+	series = "series"
+	series-desc = "series-desc"
+
+[params]
+	description = "by Code Yellow BV"
+	#twitter = "https://twitter.com/natethefinch"
+	github = "https://github.com/CodeYellowBV"
+	#gplus = "https://plus.google.com/+NateFinch"
+	#mainImage = "/moose.svg"
