@@ -4,17 +4,22 @@ title = "Code Yellow Tech Blog"
 theme = "hyde"
 copyright = "Code Yellow BV"
 
+
+#pygmentsstyle = "native"
+#pygmentsuseclasses = false
+
+
 [Author]
 	name = "Code Yellow BV"
 
 [Permalinks]
-	blog = "/:year/:month/:filename/"
+	blog = "/:year/:month/:title/"
 	code = "/:filename/"
 
 [Taxonomies]
 	tag = "tags"
-	series = "series"
-	series-desc = "series-desc"
+	#series = "series"
+	#series-desc = "series-desc"
 
 [params]
 	description = "by Code Yellow BV"
