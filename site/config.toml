@@ -1,6 +1,6 @@
 baseurl = "https://cy-techblog.netlify.com/"
 languageCode = "en-us"
-title = "Code Yellow Tech Blog"
+title = "CY Tech"
 theme = "hyde"
 copyright = "Code Yellow BV"
 

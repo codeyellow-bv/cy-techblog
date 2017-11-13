@@ -18,6 +18,6 @@ A notable exception is writing apps, and shipping the tablets as well. This is w
 <img title="Overview of destroyed tablets." src="/images/tablet-destroyed-all.jpg" width="100%">
 
 "Hey guys, how long does it take to repair this one? I need it on Monday.":
-<img title="It was like that when I found it." src="/images/tablet-destroyed-it-was-like-that-when-i-found-it.jpg" width="100%">
+<img title="It was like that when I found it." src="blog/images/tablet-destroyed-it-was-like-that-when-i-found-it.jpg" width="100%">
 <img title="Does this make me look fat?" src="/images/tablet-destroyed-does-this-make-me-look-fat.jpg" width="100%">
 <img title="Can you fix this?" src="/images/tablet-destroyed-can-you-fix-this.jpg" width="100%">
