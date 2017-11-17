@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  
+
+  <title> What your framework never told you about SQL injection protections  &middot; CY Tech </title>
+
+  
+  <link rel="stylesheet" href="https://cy-techblog.netlify.com//css/poole.css">
+  <link rel="stylesheet" href="https://cy-techblog.netlify.com//css/syntax.css">
+  <link rel="stylesheet" href="https://cy-techblog.netlify.com//css/hyde.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="theme-color" content="#ffffff">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="CY Tech" />
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+  <link href='https://fonts.googleapis.com/css?family=Fira+Sans:400,300' rel='stylesheet' type='text/css'>
+
+  <script src="//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
+  <script>
+    WebFont.load({
+      google: {
+        families: ['Fira Sans']
+      }
+    });
+  </script>
+
+</head>
+
+<body>
+
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about" align=center>
+      <h1 class="brand"><a href="https://cy-techblog.netlify.com/">CY Tech</a></h1>
+      
+      <p class="lead">
+         by Code Yellow BV 
+      </p>
+    </div>
+    <ul class="sidebar-nav">
+      <li><a href="https://cy-techblog.netlify.com//blog">Posts</a></li>
+      
+      <li><a href="/about/">About </a></li>
+      
+      <br/> 
+      <li>Code:</li>
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+      <li><a href="https://github.com/CodeYellowBV/django-binder">Django Binder </a></li>
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+      <li><a href="https://github.com/CodeYellowBV/mobx-spine">MobXspine </a></li>
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+      <li><a href="https://github.com/CodeYellowBV/realtime">Real Time </a></li>
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+      
+    </ul>
+     
+    
+    
+     <a href="https://github.com/CodeYellowBV"><i class="fa fa-github-square"></i></a>&nbsp;&nbsp; 
+     
+
+    <p class="footnote">&copy; 2017 Code Yellow. <br/> All rights reserved.</p>
+
+  </div>
+</div>
+
+<div class="content container">
+<div class="post">
+  <h1 class="post-title">What your framework never told you about SQL injection protections</h1>
+  <span class="post-date">Tue, May 20, 2014</span>
+      
+
+<p>author: Peter Bex</p>
+
+<p>We&rsquo;ve discovered that SQL injection is to this day not a fully solved
+problem, even in most popular frameworks.  In this post, we&rsquo;ll explain
+how these frameworks fail at escaping parts of a query, culminating in
+the discovery of a critical vulnerability in the popular Laravel
+framework which affects a large percentage of applications.</p>
+
+<p>Let&rsquo;s start with an innocent example, which provides the starting
+point of our journey.  This is a typical simple use case: a
+filterable, sortable list.</p>
+
+<h1 id="from-safe-to-vulnerable-in-one-step">From safe to vulnerable in one step</h1>
+
+<p>In <a href="http://www.fuelphp.com">FuelPHP</a>, a (much simplified) controller
+action to fetch a JSON result might look like this:</p>
+
+<pre><code class="language-php">&lt;?php
+public function get_products()
+{
+    $conditions = array('where' =&gt; array(array('deleted', '=', false)));
+    $minprice = \Input::get('minprice', null);
+    if (isset($minprice))
+      $conditions['where'][] = array('price', '&gt;=', $minprice);
+
+    $result = Model_Product::find('all', $conditions);
+    return $this-&gt;response($result);
+}
+</code></pre>
+
+<p>This would return products, optionally filtered by a minimum price.
+It uses the input directly, without checking whether the price is
+syntactically a valid number.  Now, that&rsquo;s pretty lazy, but regardless
+of not validating, this code is protected by the framework against SQL
+injection.  If the input is non-numerical, and we&rsquo;re using a sane
+database, this would cause a data constraint error, resulting in an
+exception being thrown in PHP.  It can be argued that this is fine:
+there is nothing sane you can do with bogus input, so returning a HTTP
+status of 500 is acceptable.  The main point is: this code is <em>not</em>
+vulnerable to SQL injection.</p>
+
+<p>Now, let&rsquo;s suppose we wanted to allow the user to sort the product
+list by any field:</p>
+
+<pre><code class="language-php">&lt;?php
+public function get_products()
+{
+    $conditions = array('where' =&gt; array(array('deleted', '=', false)));
+    $minprice = \Input::get('minprice', null);
+    if (isset($minprice))
+      $conditions['where'][] = array('price', '&gt;=', $minprice);
+
+    $conditions['order_by'] = array(Input::get('sort_field', 'id') =&gt; Input::get('sort_order', 'asc'));
+
+    $result = Model_Product::find('all', $conditions);
+    return $this-&gt;response($result);
+}
+</code></pre>
+
+<p>Again, you might argue that it&rsquo;s a bad idea to allow the user to
+filter by arbitrary column names, and we would agree: this would open
+up a relatively minor information leak if the user can sort on a field
+that&rsquo;s not supposed to be exposed to them (for example, a field that
+contains the cost price of the item).  But if the user truly is
+allowed to sort on <em>any</em> column from the table, this code should be
+safe: it would just cause an exception if the column doesn&rsquo;t exist.
+In that respect, it behaves in a way similar to our first example.</p>
+
+<p>By now you must have guessed that FuelPHP did&rsquo;t escape identifiers
+correctly.  Basically it simply wraps the identifier in (back)quotes,
+but that is trivial to break out of, of course.  In fact, it&rsquo;s worse:
+the sort direction string would be simply appended, <strong>as-is</strong>, to the
+SQL statement!</p>
+
+<p>To make things worse, the documentation explicitly states that code
+using the query builder is safe because <a href="http://www.fuelphp.com/docs/general/security.html#sql">escaping is automatically
+done</a>.  To be
+fair, it only mentions that <em>values</em> are escaped, but this isn&rsquo;t very
+clear, and there is no reason to assume that identifiers are treated
+differently.  The framework <strong>could</strong> escape identifiers, and it is
+strongly implied that it will, so it <strong>should</strong> do it.</p>
+
+<p>We believe that the failure mode of accidentally passing user
+controlled names to filtering or ordering functions should be
+proportionate to the mistake: at worst, it should cause a limited
+information leak.  Instead, this breach of the abstraction provided by
+the query builder exposes us to a critical vulnerability by allowing
+arbitrary SQL to be injected.  Besides, we believe that completely
+putting the responsibility of filtering the input on the user is
+unacceptable.</p>
+
+<p>Finally, the behaviour is simply <em>incorrect</em>: what if we really
+<strong>want</strong> to query a column or create a column alias containing a
+special character?  This might happen, for example, when working with
+legacy databases with weird naming conventions, or when naming columns
+for a COPY OUT statement.</p>
+
+<h2 id="widespread-problem">Widespread problem</h2>
+
+<p>At first, the problem was simply reported to FuelPHP with a patch and
+proof of concept.  The FuelPHP core team was quick to respond and
+agreed with us that you shouldn&rsquo;t be doing this, but even if you did,
+it should not be exploitable in this way.</p>
+
+<p>Because at Code Yellow we are currently looking at a few other
+frameworks for our projects, we decided to have a quick look to see
+how <em>they</em> dealt with it.  It turned out to be worse than we had
+imagined.  Everywhere we looked we saw essentially the same code:</p>
+
+<pre><code class="language-PHP">&lt;?php
+function quoteIdent($name) {
+    return sprintf('&quot;%s&quot;', $name);
+}
+</code></pre>
+
+<p>The implementations in CakePHP, CodeIgniter and FuelPHP before the
+patch were the worst of all.  They were so incredibly large and
+complex they couldn&rsquo;t <em>possibly</em> be safe.  Just have a look at the
+<a href="https://github.com/cakephp/cakephp/blob/2eadb89ff6fdc29754a8a0b7686852a245d66a8d/lib/Cake/Model/Datasource/DboSource.php#L784"><code>name</code></a>
+function from CakePHP or the
+<a href="https://github.com/EllisLab/CodeIgniter/blob/640ff4e348f6370b84b5d23c811f087e22d13819/system/database/DB_driver.php#L1271"><code>escape_identifiers</code></a>
+function from CodeIgniter.</p>
+
+<p>I certainly wouldn&rsquo;t be able to confidently say these functions are
+secure, even if they <em>did</em> fix all the issues in them.  It&rsquo;s not even
+clear what exactly they&rsquo;re trying to do, there&rsquo;s just too much code
+getting in the way.  And overly <em>clever</em> code, at that: I blinked and
+had to read the CodeIgniter function several times before I even
+understood the basic idea.</p>
+
+<p>It looks like these frameworks are trying to &ldquo;do what I mean&rdquo;.  For
+example, they attempt to quote identifiers which occur inside
+aggregate expressions, like <code>SUM(&quot;x&quot;)</code>, and they split <code>x.y</code>
+into <code>&quot;x&quot;.&quot;y&quot;</code>.  Unfortunately, this causes ambiguities: what if
+you have a column with the <em>name</em> <code>SUM(x)</code>, or <code>x.y</code>, however
+unlikely?  Instead, these functions should be doing only one simple
+thing: quote the identifier safely for use in a query.  Arbitrary SQL
+fragments can be made in FuelPHP using
+<a href="http://fuelphp.com/docs/classes/database/db.html#/method_expr">DB::expr</a>,
+so there&rsquo;s already a provision for inserting a literal <code>SUM(x)</code>
+into a query.  This obviates the need for more magic in the identifier
+quotation function.</p>
+
+<p>Finally, if it&rsquo;s decided that it really <strong>is</strong> the user&rsquo;s
+responsibility to avoid &ldquo;strange&rdquo; column names, and identifiers will
+never get quoted correctly (which is a cheap cop-out, in our opinion),
+it should at least be mentioned clearly in the documentation.  Most of
+the frameworks we looked at simply didn&rsquo;t mention anything about this
+in the manual or API docs.  A simple statement along the lines of
+&ldquo;only use trusted input as identifiers: they are not always escaped
+correctly&rdquo; should be enough.</p>
+
+<h2 id="it-gets-worse">It gets worse</h2>
+
+<p>The above example is a bit of a stretch, because querying on a
+user-controlled field name wouldn&rsquo;t (or <em>shouldn&rsquo;t</em>?) occur much in
+practice.  However, thanks to a tip from <a href="https://github.com/SobanVuex">Alex
+Soban</a> we started looking at &ldquo;create&rdquo; and
+&ldquo;update&rdquo; functions as well.  This led to the discovery that in
+<a href="http://laravel.com/">Laravel</a>, incorrect identifier quotation caused
+a much bigger problem: its ORM uses the field quotation function for
+<code>INSERT</code> and <code>UPDATE</code> queries, without checking that the
+fields exist.  This means that the following little snippet opens up a
+huge vulnerability in your application:</p>
+
+<pre><code class="language-php">&lt;?php
+    $u = User::find($id);
+    $u-&gt;fill($_POST);
+    $u-&gt;save();
+</code></pre>
+
+<p>If the POST body contains a key/value pair where the key is
+<code>email&quot;='foo@example.com',&quot;password</code>, Laravel will simply place
+quotes around it, which results in the following query:</p>
+
+<pre><code class="language-sql">    UPDATE &quot;users&quot; SET &quot;email&quot;='foo@example.com',&quot;password&quot; = ? WHERE &quot;id&quot; = ?
+</code></pre>
+
+<p>This allows an attacker to update the password via the first
+positional argument, which will be filled in with the value
+corresponding to that weird key in our POST.  This works even if you
+have a <code>$guarded</code> clause in your user model which should prevent
+that, like this:</p>
+
+<pre><code class="language-php">&lt;?php
+    protected $guarded = array('id', 'password');
+</code></pre>
+
+<p>The only way to fix this is by using a whitelist instead of a
+blacklist (which is recommended as a security best practice, anyway):</p>
+
+<pre><code class="language-php">&lt;?php
+    protected $fillable = array('name', 'email');
+</code></pre>
+
+<p>Please note that <strong>all</strong> models must use <code>$fillable</code>: if there&rsquo;s
+even one model that doesn&rsquo;t, an attacker can insert the result of
+arbitrary subqueries into records, which allows them to systematically
+scrape your entire database.</p>
+
+<p>The other frameworks generally check the list of supplied values
+against the list of columns in the database, and only store those.
+That means that they can&rsquo;t be attacked in this particular way, but
+programs using attacker-controlled column names in queries like we&rsquo;ve
+seen in the introduction are still vulnerable.  Let&rsquo;s see how bad the
+situation is for those frameworks.</p>
+
+<p>First off, there aren&rsquo;t many cases when arbitrary attacker-controlled
+strings are sent as identifiers in a query.  Furthermore, if it is, it
+is most likely going to be in a column argument for an <code>ORDER BY</code>
+clause.  This is one of the final clauses that occur in a <code>SELECT</code>
+query, and the SQL grammar allows only a handful of trailing clauses
+to an <code>ORDER BY</code>: only <code>LIMIT</code>/<code>FETCH</code> and <code>OFFSET</code>
+are allowed there, and an optional locking clause.  Anything else will
+cause a syntax error to be signaled: you can&rsquo;t put a <code>UNION</code>
+following the <code>ORDER BY</code>, for example (which is one of the most
+common ways to exploit SQL injection bugs), but you <em>can</em> order by a
+subquery expression, which makes for an information leak which can be
+exploited by enumerating things of interested.</p>
+
+<p>Of course, if the <code>SELECT</code> happens to be embedded in a larger
+query (as a subquery or a <a href="http://www.postgresql.org/docs/current/interactive/queries-with.html">common table
+expression</a>),
+or when the query procedure being used allows for multiple SQL
+commands to be sent off to the database (separated by semicolons),
+there will be <strong>plenty</strong> of opportunity to abuse it.  And of course
+there may be some (future?) extension of SQL that will allow trailing
+query commands to be embedded.  Even then, there&rsquo;s always someone more
+clever than you who may come up with creative ways to squeeze out more
+information from the database through the ways described above.</p>
+
+<h1 id="fixing-the-problem">Fixing the problem</h1>
+
+<p>Of course, we contacted the various vendors which we found to be
+affected by this problem.  It proved to be more difficult than
+expected: The <a href="http://www.laravel.com">Laravel</a>,
+<a href="http://www.li3.me">Lithium</a> and
+<a href="http://www.codeigniter.com">CodeIgniter</a> frameworks did not provide
+any security contact information on their websites, and when we asked
+on IRC, we were suggested to file a ticket on GitHub.  In our opinion,
+posting a security issue on a public issue tracker is not a
+<a href="https://en.wikipedia.org/wiki/Responsible_disclosure">responsible way</a>
+of disclosing vulnerabilities!</p>
+
+<p>In the end we decided to contact Lithium and CodeIgniter through the
+websites of the companies behind them.  In the case of Laravel we
+contacted its original author.  As fortune would have it, we reported
+the issue one day before <a href="https://conference.laravel.com/">Laracon
+2014</a>.  He was unavailable due to
+this conference, so our e-mail went unseen for 5 days.  This shows why
+it is important to have a security team, with contact details clearly
+posted on the framework&rsquo;s website.</p>
+
+<p>Since reporting this issue, Laravel has
+<a href="https://github.com/laravel/framework/commit/c942a1bc30999e3d7a5567f264bfc99c77843919">fixed</a>
+the issue and updated the
+<a href="https://github.com/laravel/docs/commit/5afdbb899c714cb3ece6fe3eaecb54c5945be765">documentation</a>
+to more clearly state this pitfall, FuelPHP has
+<a href="https://github.com/fuel/core/commit/7574d5c78aae52ecdbedd138b2614bb2345ecff5">fixed</a>
+the issue,
+<a href="https://github.com/EllisLab/CodeIgniter/commit/8c833f4c096a1fa9187c599943159eacb3f7133a">CodeIgniter</a>
+and
+<a href="https://github.com/cakephp/docs/commit/bf6ab74954b1852c53d52573a76acf3ac198482d">CakePHP</a>
+documented it as a potential developer pitfall.  The
+<a href="http://li3.me/">Lithium</a> core team are still deliberating on what to
+do.</p>
+
+<p>We&rsquo;d like to tip our hat to Thijs from
+<a href="https://www.whitehats.nl/">WhiteHats</a> for discussing with us how to
+best report the issue with so many frameworks, and for contacting the
+<a href="http://www.drupal.org">Drupal</a> team about improving their
+documentation about this issue.</p>
+
+<p>Surprisingly few frameworks quote identifiers correctly.  To find
+frameworks which do it correctly, we looked outside the PHP ecosystem,
+and even there we found that only <a href="http://rubyonrails.org/">Ruby on
+Rails</a> correctly quotes identifiers
+throughout.  Even <a href="https://www.djangoproject.com/">Django</a> doesn&rsquo;t
+quote correctly, but it consistently checks all attributes against
+database columns which mean it&rsquo;s probably not vulnerable.  Of course,
+we haven&rsquo;t been able to look at all frameworks (there are so many of
+them!), so we would like to suggest that you investigate how your
+framework of choice does it.  While you&rsquo;re at it, of course you&rsquo;ll
+need to know how to <em>properly</em> fix this issue, so let&rsquo;s finish up by
+explaining that.</p>
+
+<h2 id="how-to-correctly-quote-identifiers">How to correctly quote identifiers</h2>
+
+<p>It turns out that quoting <em>identifiers</em> in plain ANSI SQL under an
+ASCII character encoding is as simple as quoting <em>values</em> in ANSI SQL
+with ASCII. As you may know, values must be wrapped in single quotes,
+with embedded single quotes doubled.  For identifiers, the same
+happens, but with double quotes.  So if the <em>value</em> <code>O'Neill</code> gets
+quoted as <code>'O''Neill'</code>, the <em>identifier</em> <code>This is the &quot;simplest&quot;
+thing</code> gets quoted as <code>&quot;This is the &quot;&quot;simplest&quot;&quot; thing&quot;</code>.</p>
+
+<p>Unfortunately, there are some complications.  As you may know,
+escaping <em>values</em> should be done via
+<a href="http://www.postgresql.org/docs/current/interactive/libpq-exec.html#LIBPQ-PQESCAPESTRINGCONN"><code>PQescapeStringConn()</code></a>
+or
+<a href="http://dev.mysql.com/doc/refman/5.6/en/mysql-real-escape-string.html"><code>mysql_real_escape_string()</code></a>
+and <strong>not</strong> via the deprecated
+<a href="http://www.postgresql.org/docs/current/interactive/libpq-exec.html#LIBPQ-PQESCAPESTRING"><code>PQescapeString()</code></a>
+or
+<a href="http://dev.mysql.com/doc/refman/5.6/en/mysql-escape-string.html"><code>mysql_escape_string()</code></a>.
+The reason is that you can&rsquo;t treat strings in multi-byte character
+encodings one byte at a time, because that way you could be blindly
+replacing bytes <em>within a character</em>: after reinterpretation of those
+bytes as characters in the chosen encoding, your carefully quoted
+string <a href="http://shiflett.org/blog/2006/jan/addslashes-versus-mysql-real-escape-string">might suddenly not be quoted
+anymore</a>.
+The database client library knows which encoding is being used to
+communicate with the server, so it knows how to treat multi-byte
+characters correctly.</p>
+
+<p>To this end, PostgreSQL&rsquo;s <code>libpq</code> offers the
+<a href="http://www.postgresql.org/docs/current/static/libpq-exec.html#LIBPQ-PQESCAPEIDENTIFIER"><code>PQescapeIdentifier()</code></a>
+function.  Unfortunately, neither MySQL&rsquo;s nor SQLite&rsquo;s client
+libraries offer a function for escaping identifiers.  In the corporate
+enterprise&trade; world, it gets worse: in the Oracle database it
+apparently is <strong>impossible</strong> to safely quote identifiers!  The
+documentation states <a href="http://docs.oracle.com/cd/E16655_01/server.121/e17209/sql_elements008.htm">&ldquo;neither quoted nor nonquoted identifiers can
+contain double quotation marks or the null character
+(\0).&rdquo;</a>.
+Microsoft SQL Server has two ways of escaping, the regular ANSI way
+(which, like with MySQL, is only enabled if an option is set) and its
+proprietary way of wrapping the identifier in square brackets.  The
+<a href="http://msdn.microsoft.com/en-us/library/ms175874%28v=sql.120%29.aspx">documentation</a>
+doesn&rsquo;t mention it, but you can escape square brackets within
+identifiers by doubling the <em>closing</em> bracket.  This can be gleaned
+from the documentation on the <a href="http://technet.microsoft.com/en-us/library/ms176114.aspx">in-database identifier quotation
+function</a>,
+which doesn&rsquo;t seem to be available in client libraries.</p>
+
+<p>Because most DB client libraries have no identifier quotation
+function, most DB-agnostic abstractions don&rsquo;t offer it either.  This
+includes PDO, which is currently the most popular PHP database
+abstraction library.  By offering only the lowest common denominator,
+the power to correctly quote identifiers is taken away.  Instead, the
+library could emulate identifier escaping if it enforces a sane
+character encoding, and throw an exception in cases where a special
+character occurs in the string and escaping it is truly impossible
+(for example when quoting for the Oracle database).</p>
+
+<p>Luckily, it turns out that in practice, multi-byte encodings are
+rarely used.  The most used encoding is probably UTF-8, which also
+happens to be somewhat self-correcting, so the multi-byte issue might
+not be that big of a deal, especially because the encoding can usually
+not be changed by an attacker.  So in practice, escaping the quotation
+ASCII character at the byte level is &ldquo;good enough&rdquo;.</p>
+
+<p>Since most modern code uses parameterised queries or prepared
+statements, the risk of SQL injection is much lower than it used to
+be.  Unfortunately, you can only pass values as parameters; there is
+no provision for parameterising identifiers, which would solve the
+problem more thoroughly.</p>
+
+<p>All in all, there&rsquo;s still some work to be done by the database
+vendors.  The underlying problem, as I&rsquo;ve argued
+<a href="http://www.more-magic.net/posts/structurally-fixing-injection-bugs.html">before</a>,
+is that we&rsquo;re trying to build up strings containing statements of a
+full-fledged query language, with embedded user input.  If the
+database vendors provided a way to bypass SQL strings, and instead
+provided direct access to the underlying abstract syntax tree, all SQL
+injection problems would disappear in one fell swoop.</p>
+
+
+      <div id="disqus_thread"></div>
+<script type="text/javascript">
+
+(function() {
+    
+    
+    if (window.location.hostname == "localhost") 
+        return;
+
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    var disqus_shortname = '';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the comments powered by <a href="http://disqus.com/?ref_noscript">Disqus.</a></noscript>
+</div>
+</div>
+
+  </body>
+</html>

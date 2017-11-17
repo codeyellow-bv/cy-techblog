@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  
+
+  <title> Passing variables from server to client using RequireJS  &middot; CY Tech </title>
+
+  
+  <link rel="stylesheet" href="https://cy-techblog.netlify.com//css/poole.css">
+  <link rel="stylesheet" href="https://cy-techblog.netlify.com//css/syntax.css">
+  <link rel="stylesheet" href="https://cy-techblog.netlify.com//css/hyde.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="theme-color" content="#ffffff">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="CY Tech" />
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+  <link href='https://fonts.googleapis.com/css?family=Fira+Sans:400,300' rel='stylesheet' type='text/css'>
+
+  <script src="//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
+  <script>
+    WebFont.load({
+      google: {
+        families: ['Fira Sans']
+      }
+    });
+  </script>
+
+</head>
+
+<body>
+
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about" align=center>
+      <h1 class="brand"><a href="https://cy-techblog.netlify.com/">CY Tech</a></h1>
+      
+      <p class="lead">
+         by Code Yellow BV 
+      </p>
+    </div>
+    <ul class="sidebar-nav">
+      <li><a href="https://cy-techblog.netlify.com//blog">Posts</a></li>
+      
+      <li><a href="/about/">About </a></li>
+      
+      <br/> 
+      <li>Code:</li>
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+      <li><a href="https://github.com/CodeYellowBV/django-binder">Django Binder </a></li>
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+      <li><a href="https://github.com/CodeYellowBV/mobx-spine">MobXspine </a></li>
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+      <li><a href="https://github.com/CodeYellowBV/realtime">Real Time </a></li>
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+      
+    </ul>
+     
+    
+    
+     <a href="https://github.com/CodeYellowBV"><i class="fa fa-github-square"></i></a>&nbsp;&nbsp; 
+     
+
+    <p class="footnote">&copy; 2017 Code Yellow. <br/> All rights reserved.</p>
+
+  </div>
+</div>
+
+<div class="content container">
+<div class="post">
+  <h1 class="post-title">Passing variables from server to client using RequireJS</h1>
+  <span class="post-date">Tue, Dec 10, 2013</span>
+      
+
+<p>author: Burhan Zainuddin</p>
+
+<p>It&rsquo;s quite common to pass variables from server to client. Common uses are bootstrapping data, syncing config setting etc.
+Consider the following scenario: a single page app where a user logs in and refreshes the current page. You want the user to
+still be logged in. The most commonly used practise is to put it in a script tag:</p>
+
+<pre><code class="language-html">&lt;script type=&quot;text/javascript&quot;&gt;
+    var userId = 1;
+&lt;/script&gt;
+</code></pre>
+
+<p>This way you introduce a global variable userId. What happens if the number of variables increase? Probably &ldquo;namespace&rdquo; it:</p>
+
+<pre><code class="language-html">&lt;script type=&quot;text/javascript&quot;&gt;
+    var config = {
+        userId: 1,
+        bootstrap: {
+            product: {
+                id: 1,
+                title: 'Awesome product',
+            }
+        }
+    };
+&lt;/script&gt;
+</code></pre>
+
+<p>Now there is only 1 global variable. And maybe AMD it in config.js:</p>
+
+<pre><code class="language-javascript">define(function (require) {
+    return window.config ? window.config : {};
+});
+</code></pre>
+
+<h2 id="module-config">Module config</h2>
+
+<p>RequireJS supports <a href="http://requirejs.org/docs/api.html#config-moduleconfig">module configs</a>.
+Lets try rewriting using module config:</p>
+
+<h2 id="1-server-generated-html">1. Server generated HTML:</h2>
+
+<pre><code class="language-html">&lt;!-- First define config settings. --&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+    var require = {
+        config: {
+            // Config options for a module named 'config'.
+            config: {
+                userId: 1
+            }
+        }
+    };
+&lt;/script&gt;
+
+&lt;!-- Load RequireJS after defining config settings. --&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;require.js&quot; data-main=&quot;app&quot;&gt;&lt;/script&gt;
+</code></pre>
+
+<h2 id="2-create-a-new-module-named-config">2. Create a new module named &lsquo;config&rsquo;:</h2>
+
+<pre><code class="language-javascript">define(function (require) {
+    'use strict';
+
+    var module = require('module');
+
+    return module.config ? module.config() : {};
+});
+</code></pre>
+
+<h2 id="3-and-require-it-somewhere-in-your-app">3. And require it somewhere in your app:</h2>
+
+<pre><code class="language-javascript">var config = require('config');
+</code></pre>
+
+
+      <div id="disqus_thread"></div>
+<script type="text/javascript">
+
+(function() {
+    
+    
+    if (window.location.hostname == "localhost") 
+        return;
+
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    var disqus_shortname = '';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the comments powered by <a href="http://disqus.com/?ref_noscript">Disqus.</a></noscript>
+</div>
+</div>
+
+  </body>
+</html>

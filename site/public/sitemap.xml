@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://cy-techblog.netlify.com/realtime/</loc>
+    <lastmod>2017-05-06T00:00:00+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://cy-techblog.netlify.com/mobxspine/</loc>
+    <lastmod>2017-01-02T00:00:00+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://cy-techblog.netlify.com/djangobinder/</loc>
+    <lastmod>2016-11-12T00:00:00+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://cy-techblog.netlify.com/desc/series-3.5-years-of-go/</loc>
+    <lastmod>2016-08-24T11:09:35+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://cy-techblog.netlify.com/2016/03/accessing-your-vagrant-boxes-through-a-reverse-proxy/</loc>
+    <lastmod>2016-03-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://cy-techblog.netlify.com/2015/10/queue/</loc>
+    <lastmod>2015-10-22T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://cy-techblog.netlify.com/2015/10/refactoring-our-frontend-development-stack/</loc>
+    <lastmod>2015-10-22T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://cy-techblog.netlify.com/2015/05/tangible-breakage/</loc>
+    <lastmod>2015-05-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://cy-techblog.netlify.com/desc/series-hugo101/</loc>
+    <lastmod>2014-08-12T11:09:35+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://cy-techblog.netlify.com/2014/07/kernel-backups-for-debian-security-updates/</loc>
+    <lastmod>2014-07-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://cy-techblog.netlify.com/2014/05/what-your-framework-never-told-you-about-sql-injection-protections/</loc>
+    <lastmod>2014-05-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://cy-techblog.netlify.com/2014/05/just-some-days-at-the-office/</loc>
+    <lastmod>2014-05-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://cy-techblog.netlify.com/2014/02/rapid-cordova-application-development/</loc>
+    <lastmod>2014-02-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://cy-techblog.netlify.com/2013/12/passing-variables-from-server-to-client-using-requirejs/</loc>
+    <lastmod>2013-12-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://cy-techblog.netlify.com/2013/11/fuelphp-released-version-1.7/</loc>
+    <lastmod>2013-11-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://cy-techblog.netlify.com/2013/09/using-trello-for-our-development-workflow/</loc>
+    <lastmod>2013-09-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://cy-techblog.netlify.com/2013/07/migration-transactions/</loc>
+    <lastmod>2013-07-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://cy-techblog.netlify.com/2013/07/coding-style-guide/</loc>
+    <lastmod>2013-07-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://cy-techblog.netlify.com/2013/06/fuelphp-released-version-1.6.1/</loc>
+    <lastmod>2013-06-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://cy-techblog.netlify.com/2013/05/elementary-os-luna-beta-2-released/</loc>
+    <lastmod>2013-05-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://cy-techblog.netlify.com/2013/05/fuelphp-released-version-1.6/</loc>
+    <lastmod>2013-05-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://cy-techblog.netlify.com/2013/04/raspberry-pi-prototyping-development/</loc>
+    <lastmod>2013-04-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://cy-techblog.netlify.com/2013/04/the-ideal-development-image/</loc>
+    <lastmod>2013-04-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://cy-techblog.netlify.com/2013/03/new-development-and-test-environment-installed/</loc>
+    <lastmod>2013-03-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://cy-techblog.netlify.com/about/</loc>
+    <lastmod>2012-11-10T00:00:00+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://cy-techblog.netlify.com/tags/app/</loc>
+    <lastmod>2015-05-29T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cy-techblog.netlify.com/tags/backup/</loc>
+    <lastmod>2014-07-02T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cy-techblog.netlify.com/blog/</loc>
+    <lastmod>2016-03-16T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cy-techblog.netlify.com/tags/boot/</loc>
+    <lastmod>2014-07-02T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cy-techblog.netlify.com/</loc>
+    <lastmod>2017-05-06T00:00:00+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cy-techblog.netlify.com/tags/cakephp/</loc>
+    <lastmod>2014-05-20T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cy-techblog.netlify.com/tags/codeigniter/</loc>
+    <lastmod>2014-05-20T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cy-techblog.netlify.com/code/</loc>
+    <lastmod>2017-05-06T00:00:00+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cy-techblog.netlify.com/tags/cordova/</loc>
+    <lastmod>2014-02-05T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cy-techblog.netlify.com/tags/debian/</loc>
+    <lastmod>2014-07-02T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cy-techblog.netlify.com/desc/</loc>
+    <lastmod>2016-08-24T11:09:35+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cy-techblog.netlify.com/tags/development/</loc>
+    <lastmod>2014-05-06T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cy-techblog.netlify.com/tags/development-environment/</loc>
+    <lastmod>2014-05-06T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cy-techblog.netlify.com/tags/development-image/</loc>
+    <lastmod>2013-04-11T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cy-techblog.netlify.com/tags/devops/</loc>
+    <lastmod>2016-03-16T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cy-techblog.netlify.com/tags/elementary-os/</loc>
+    <lastmod>2013-05-06T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cy-techblog.netlify.com/tags/frameworks/</loc>
+    <lastmod>2014-05-20T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cy-techblog.netlify.com/tags/fuelphp/</loc>
+    <lastmod>2015-10-22T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cy-techblog.netlify.com/tags/fun/</loc>
+    <lastmod>2014-05-06T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cy-techblog.netlify.com/tags/general/</loc>
+    <lastmod>2014-05-06T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cy-techblog.netlify.com/tags/initrd/</loc>
+    <lastmod>2014-07-02T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cy-techblog.netlify.com/tags/javascript/</loc>
+    <lastmod>2015-10-22T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cy-techblog.netlify.com/tags/kernel/</loc>
+    <lastmod>2014-07-02T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cy-techblog.netlify.com/tags/laravel/</loc>
+    <lastmod>2014-05-20T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cy-techblog.netlify.com/tags/linux/</loc>
+    <lastmod>2013-05-06T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cy-techblog.netlify.com/tags/lithium/</loc>
+    <lastmod>2014-05-20T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cy-techblog.netlify.com/tags/migration/</loc>
+    <lastmod>2013-07-15T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cy-techblog.netlify.com/tags/open-source/</loc>
+    <lastmod>2015-10-22T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cy-techblog.netlify.com/tags/php/</loc>
+    <lastmod>2015-10-22T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cy-techblog.netlify.com/tags/printers/</loc>
+    <lastmod>2013-04-20T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cy-techblog.netlify.com/tags/projects/</loc>
+    <lastmod>2015-10-22T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cy-techblog.netlify.com/tags/prototyping/</loc>
+    <lastmod>2013-04-20T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cy-techblog.netlify.com/tags/proxmox/</loc>
+    <lastmod>2013-04-11T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cy-techblog.netlify.com/tags/python/</loc>
+    <lastmod>2013-04-20T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cy-techblog.netlify.com/tags/queue/</loc>
+    <lastmod>2015-10-22T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cy-techblog.netlify.com/tags/raspberry-pi/</loc>
+    <lastmod>2013-04-20T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cy-techblog.netlify.com/tags/requirejs/</loc>
+    <lastmod>2013-12-10T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cy-techblog.netlify.com/tags/rpi-development/</loc>
+    <lastmod>2013-04-20T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cy-techblog.netlify.com/tags/ruby/</loc>
+    <lastmod>2016-03-16T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cy-techblog.netlify.com/tags/security/</loc>
+    <lastmod>2014-05-20T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cy-techblog.netlify.com/tags/servers/</loc>
+    <lastmod>2013-03-27T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cy-techblog.netlify.com/tags/software-development/</loc>
+    <lastmod>2015-10-22T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cy-techblog.netlify.com/tags/sql/</loc>
+    <lastmod>2013-07-15T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cy-techblog.netlify.com/tags/sql-injection/</loc>
+    <lastmod>2014-05-20T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cy-techblog.netlify.com/tags/tablet/</loc>
+    <lastmod>2015-05-29T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cy-techblog.netlify.com/tags/</loc>
+    <lastmod>2015-05-29T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cy-techblog.netlify.com/tags/tools/</loc>
+    <lastmod>2016-03-16T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cy-techblog.netlify.com/tags/transaction/</loc>
+    <lastmod>2013-07-15T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cy-techblog.netlify.com/tags/trello/</loc>
+    <lastmod>2013-09-30T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cy-techblog.netlify.com/tags/updates/</loc>
+    <lastmod>2014-07-02T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cy-techblog.netlify.com/tags/vagrant/</loc>
+    <lastmod>2016-03-16T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cy-techblog.netlify.com/tags/werkwijze/</loc>
+    <lastmod>2013-09-30T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cy-techblog.netlify.com/tags/workflows/</loc>
+    <lastmod>2013-09-30T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+</urlset>

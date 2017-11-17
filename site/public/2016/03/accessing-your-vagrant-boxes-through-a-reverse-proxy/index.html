@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  
+
+  <title> Accessing your Vagrant boxes through a reverse proxy  &middot; CY Tech </title>
+
+  
+  <link rel="stylesheet" href="https://cy-techblog.netlify.com//css/poole.css">
+  <link rel="stylesheet" href="https://cy-techblog.netlify.com//css/syntax.css">
+  <link rel="stylesheet" href="https://cy-techblog.netlify.com//css/hyde.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="theme-color" content="#ffffff">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="CY Tech" />
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+  <link href='https://fonts.googleapis.com/css?family=Fira+Sans:400,300' rel='stylesheet' type='text/css'>
+
+  <script src="//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
+  <script>
+    WebFont.load({
+      google: {
+        families: ['Fira Sans']
+      }
+    });
+  </script>
+
+</head>
+
+<body>
+
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about" align=center>
+      <h1 class="brand"><a href="https://cy-techblog.netlify.com/">CY Tech</a></h1>
+      
+      <p class="lead">
+         by Code Yellow BV 
+      </p>
+    </div>
+    <ul class="sidebar-nav">
+      <li><a href="https://cy-techblog.netlify.com//blog">Posts</a></li>
+      
+      <li><a href="/about/">About </a></li>
+      
+      <br/> 
+      <li>Code:</li>
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+      <li><a href="https://github.com/CodeYellowBV/django-binder">Django Binder </a></li>
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+      <li><a href="https://github.com/CodeYellowBV/mobx-spine">MobXspine </a></li>
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+      <li><a href="https://github.com/CodeYellowBV/realtime">Real Time </a></li>
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+      
+    </ul>
+     
+    
+    
+     <a href="https://github.com/CodeYellowBV"><i class="fa fa-github-square"></i></a>&nbsp;&nbsp; 
+     
+
+    <p class="footnote">&copy; 2017 Code Yellow. <br/> All rights reserved.</p>
+
+  </div>
+</div>
+
+<div class="content container">
+<div class="post">
+  <h1 class="post-title">Accessing your Vagrant boxes through a reverse proxy</h1>
+  <span class="post-date">Wed, Mar 16, 2016</span>
+      
+
+<p>author: Peter Bex</p>
+
+<p>The past year we&rsquo;ve been making increased use of
+<a href="http://www.vagrantup.com">Vagrant</a> to streamline our development
+systems.  Vagrant makes it easy to manage and provision virtual
+machines for each project we work on.  When a new developer joins a
+project team, there is no more need to spend half a day fiddling to
+make the dev stack &ldquo;just so&rdquo; that it works for the project.  In this
+post, we&rsquo;d like to show why we made a Vagrant plugin for proxying
+your local HTTP server to your vagrant boxes.</p>
+
+<p><img src="{filename}/images/vagrant-logo.jpg" alt="Vagrant is very helpful" /></p>
+
+<h2 id="accessing-a-dev-machine">Accessing a dev machine</h2>
+
+<p>While Vagrant makes it easy to access a virtual machine from the host
+box (especially with the
+<a href="https://github.com/smdahlen/vagrant-hostmanager/">host manager plugin</a>),
+it is a bit more difficult to make it accessible from elsewhere in the
+network.</p>
+
+<p>One way to do it is to
+<a href="https://www.vagrantup.com/docs/networking/forwarded_ports.html">forward a port</a>
+from the VM&rsquo;s local network interface to a port on your real machine&rsquo;s
+physical network interface.  Another way is to use a
+<a href="https://www.vagrantup.com/docs/networking/public_network.html">public network</a>.
+These approaches are both viable and allow you to quickly provide
+access to a visiting client or a colleague, but they have some
+limitations.</p>
+
+<h2 id="our-network-is-getting-crowded">Our network is getting crowded</h2>
+
+<p>At Code Yellow, we have several projects where a web application is
+supported by tablets or other devices.  And to make things even more
+complex, sometimes the web application is available on multiple
+virtual hosts and uses the host name to control its behaviour.</p>
+
+<p>Unless you&rsquo;re doing load balancing or other tricks, only one IP
+address can have a certain host name within the network.  Of course,
+several people will be working on the same project and running the
+same Vagrant box simultaneously.  This means you&rsquo;ll quickly run into
+trouble with assigning IP addresses and host names.  We also want to
+avoid assigning a static IP address for every combination of Vagrant
+box and employee, as that quickly becomes intractable.</p>
+
+<p>All this means that using the public network method is not very
+practical for us.  We could rely on port forwarding, but that still
+doesn&rsquo;t solve the virtual hosts problem.  It&rsquo;s easy to (temporarily)
+edit <code>/etc/hosts</code> on a developer&rsquo;s box to go look at another
+developer&rsquo;s work, but explaining how to do that to a visiting client
+is a bit trickier, and on a tablet you don&rsquo;t even have access to the
+hosts file as far as I&rsquo;m aware.</p>
+
+<h2 id="using-a-proxy-to-solve-our-problems">Using a proxy to solve our problems</h2>
+
+<p>So we&rsquo;ve come up with a reasonably elegant solution to this: instead
+of fiddling with the network, we decided that if you want to share
+your application to the outside network, you can run NGINX (or, in
+theory, any other web server) and <em>proxy</em> incoming requests to boxes
+depending on the URL.</p>
+
+<p>For example, if you have a dev box for <a href="https://talkrex.com/">REX</a>
+with two test customers, they&rsquo;ll be available under
+<code>customer1.rex.test</code> and <code>customer2.rex.test</code>.  Let&rsquo;s say your IP
+address is <code>192.168.1.123</code>, then you can use
+<code>http://192.168.1.123/customer1.rex.test</code> to access that customer&rsquo;s
+REX instance.  The proxy will set the <code>Host</code> header based on the first
+path component, and forward the remaining part of the URL to the web
+server running inside the VM.</p>
+
+<p>To help automate this proxy configuration, we&rsquo;ve created a Vagrant
+plugin called
+<a href="https://github.com/CodeYellowBV/vagrant-reverse-proxy">vagrant-reverse-proxy</a>.
+It can be installed in the usual way:</p>
+
+<pre><code>:::sh
+$ vagrant plugin install vagrant-reverse-proxy
+</code></pre>
+
+<p>After that, all you need is to add a few lines to your <code>Vagrantfile</code>:</p>
+
+<pre><code>:::ruby
+if Vagrant.has_plugin?(&quot;vagrant-reverse-proxy&quot;)
+  config.reverse_proxy.enabled = true
+  config.reverse_proxy.vhosts = ['client1.rex.test', 'client2.rex.test']
+end
+</code></pre>
+
+<p>And you&rsquo;ll need to do a one-time manual configuration of NGINX on your
+dev box.  If you&rsquo;re on a Debian system (or derivative) and don&rsquo;t have
+any other web sites configured, just put this in
+<code>/etc/nginx/sites-enabled/default</code>:</p>
+
+<pre><code>server {
+	listen [::]:80 default ipv6only=off;
+	server_name default;
+	include &quot;vagrant-proxy-config&quot;;
+}
+</code></pre>
+
+<p>The Vagrant plugin will write to a file called
+<code>/etc/nginx/vagrant-proxy-config</code> and issue a <code>service nginx reload</code>
+command each time you bring up or halt a box.  Only running boxes are
+forwarded.</p>
+
+<p>This setup makes it very easy to configure a tablet to contact a
+Vagrant VM, simply through your dev box&rsquo;s public IP address or its
+host name if you have a local DNS server.</p>
+
+
+      <div id="disqus_thread"></div>
+<script type="text/javascript">
+
+(function() {
+    
+    
+    if (window.location.hostname == "localhost") 
+        return;
+
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    var disqus_shortname = '';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the comments powered by <a href="http://disqus.com/?ref_noscript">Disqus.</a></noscript>
+</div>
+</div>
+
+  </body>
+</html>

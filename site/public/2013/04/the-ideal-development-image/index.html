@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  
+
+  <title> The ideal development image  &middot; CY Tech </title>
+
+  
+  <link rel="stylesheet" href="https://cy-techblog.netlify.com//css/poole.css">
+  <link rel="stylesheet" href="https://cy-techblog.netlify.com//css/syntax.css">
+  <link rel="stylesheet" href="https://cy-techblog.netlify.com//css/hyde.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="theme-color" content="#ffffff">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="CY Tech" />
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+  <link href='https://fonts.googleapis.com/css?family=Fira+Sans:400,300' rel='stylesheet' type='text/css'>
+
+  <script src="//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
+  <script>
+    WebFont.load({
+      google: {
+        families: ['Fira Sans']
+      }
+    });
+  </script>
+
+</head>
+
+<body>
+
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about" align=center>
+      <h1 class="brand"><a href="https://cy-techblog.netlify.com/">CY Tech</a></h1>
+      
+      <p class="lead">
+         by Code Yellow BV 
+      </p>
+    </div>
+    <ul class="sidebar-nav">
+      <li><a href="https://cy-techblog.netlify.com//blog">Posts</a></li>
+      
+      <li><a href="/about/">About </a></li>
+      
+      <br/> 
+      <li>Code:</li>
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+      <li><a href="https://github.com/CodeYellowBV/django-binder">Django Binder </a></li>
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+      <li><a href="https://github.com/CodeYellowBV/mobx-spine">MobXspine </a></li>
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+      <li><a href="https://github.com/CodeYellowBV/realtime">Real Time </a></li>
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+      
+    </ul>
+     
+    
+    
+     <a href="https://github.com/CodeYellowBV"><i class="fa fa-github-square"></i></a>&nbsp;&nbsp; 
+     
+
+    <p class="footnote">&copy; 2017 Code Yellow. <br/> All rights reserved.</p>
+
+  </div>
+</div>
+
+<div class="content container">
+<div class="post">
+  <h1 class="post-title">The ideal development image</h1>
+  <span class="post-date">Thu, Apr 11, 2013</span>
+      <p>author: Rene Cremers</p>
+
+<p>To take full advantage of the Proxmox development servers we decided to make a fresh development image with all
+settings preset, so when you start a project, you only have to load a fresh image into a Virtual Private Server
+and go off developing great things.</p>
+
+<p>In this post we would like to share with you the default settings and configuration of the setup:</p>
+
+<ul>
+<li>Ubuntu server 12.04 (minimalistic install)</li>
+<li>MySQL</li>
+<li><a href="http://hginit.com">DVCS</a>: Mercurial and Git</li>
+<li>PHP 5.4</li>
+<li>Apache 2</li>
+<li>Curl</li>
+<li>PhpMyAdmin</li>
+<li>Python 2.7</li>
+<li>Htop</li>
+<li>Btsync</li>
+<li>Node Version Manager</li>
+</ul>
+
+<p>Of course the standard settings for the firewall, logwatch user management and ssh are also part of the image.</p>
+
+<p>Some choices may seem a bit odd, but some things are nice to have without the extra apt-get hassle. However: in a
+production environment the list would be very different indeed.</p>
+
+
+      <div id="disqus_thread"></div>
+<script type="text/javascript">
+
+(function() {
+    
+    
+    if (window.location.hostname == "localhost") 
+        return;
+
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    var disqus_shortname = '';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the comments powered by <a href="http://disqus.com/?ref_noscript">Disqus.</a></noscript>
+</div>
+</div>
+
+  </body>
+</html>

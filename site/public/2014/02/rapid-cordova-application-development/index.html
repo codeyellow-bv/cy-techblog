@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  
+
+  <title> Rapid Cordova application development  &middot; CY Tech </title>
+
+  
+  <link rel="stylesheet" href="https://cy-techblog.netlify.com//css/poole.css">
+  <link rel="stylesheet" href="https://cy-techblog.netlify.com//css/syntax.css">
+  <link rel="stylesheet" href="https://cy-techblog.netlify.com//css/hyde.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="theme-color" content="#ffffff">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="CY Tech" />
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+  <link href='https://fonts.googleapis.com/css?family=Fira+Sans:400,300' rel='stylesheet' type='text/css'>
+
+  <script src="//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
+  <script>
+    WebFont.load({
+      google: {
+        families: ['Fira Sans']
+      }
+    });
+  </script>
+
+</head>
+
+<body>
+
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about" align=center>
+      <h1 class="brand"><a href="https://cy-techblog.netlify.com/">CY Tech</a></h1>
+      
+      <p class="lead">
+         by Code Yellow BV 
+      </p>
+    </div>
+    <ul class="sidebar-nav">
+      <li><a href="https://cy-techblog.netlify.com//blog">Posts</a></li>
+      
+      <li><a href="/about/">About </a></li>
+      
+      <br/> 
+      <li>Code:</li>
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+      <li><a href="https://github.com/CodeYellowBV/django-binder">Django Binder </a></li>
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+      <li><a href="https://github.com/CodeYellowBV/mobx-spine">MobXspine </a></li>
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+      <li><a href="https://github.com/CodeYellowBV/realtime">Real Time </a></li>
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+      
+    </ul>
+     
+    
+    
+     <a href="https://github.com/CodeYellowBV"><i class="fa fa-github-square"></i></a>&nbsp;&nbsp; 
+     
+
+    <p class="footnote">&copy; 2017 Code Yellow. <br/> All rights reserved.</p>
+
+  </div>
+</div>
+
+<div class="content container">
+<div class="post">
+  <h1 class="post-title">Rapid Cordova application development</h1>
+  <span class="post-date">Wed, Feb 5, 2014</span>
+      
+
+<p>author: Peter Bex</p>
+
+<p>Developing <a href="http://www.cordova.io/">Apache Cordova</a> (aka
+<a href="http://www.phonegap.com">Phonegap</a>) applications tends to be rather
+painful: the long waits while compiling an application for Android and
+uploading it to the device (or emulator) leads to unacceptable round
+trip times, especially for applications with lots of large content
+files (images, videos).  In this blog post we&rsquo;ll explain how we
+develop Cordova applications directly in the desktop web browser, and
+announce an open source release of a RequireJS module that helps
+making this a little easier for us.</p>
+
+<p>The main reason we&rsquo;ve chosen Cordova over native development is
+<em>portability</em>: writing a native app for each platform you want to
+support is a waste of developer effort and, by extension, money.  We
+would also like to leverage this portability to the fullest by
+developing applications from the browser, as much as we can.  In a
+browser, pressing &ldquo;refresh&rdquo;, results in an <strong>instantaneous</strong> update.</p>
+
+<h1 id="waiting-for-the-non-existent-device">Waiting for the (non-existent) device</h1>
+
+<p>Very basic applications can be developed in the browser without
+problems, but this isn&rsquo;t so easy once you start using some Cordova
+plugins to make use of the device&rsquo;s more advanced capabilities.  When
+you use these, you generally need to wait for the
+<a href="http://docs.phonegap.com/en/2.0.0/cordova_events_events.md.html#deviceready"><code>deviceready</code></a>
+event to get triggered.  This signals that Cordova has finished
+setting up all plugins and handlers and you can start using these.
+The initial &ldquo;demo&rdquo; application which gets installed when you
+initialise a new Cordova project also uses the <code>deviceready</code> event as
+a sort of starting point for the application.  This means that when
+you open it in your web browser, it won&rsquo;t seem to &ldquo;do&rdquo; anything,
+because it&rsquo;s waiting for an event which will never arrive.  This is
+what you&rsquo;ll see when you open it in a browser:</p>
+
+<p><img src="{filename}/images/phonegap-waiting-for-deviceready.png" alt="connecting to device..." /></p>
+
+<p>Because the event is never triggered, it will stay stuck in this state
+rather than giving an error.  On an actual device, this is what you&rsquo;d
+see:</p>
+
+<p><img src="{filename}/images/phonegap-after-deviceready.png" alt="device is ready" /></p>
+
+<p>What we really want is for the application to detect that it&rsquo;s not
+running on a device and continue the application with that knowledge.
+Furthermore, we are using the excellent
+<a href="http://requirejs.org/">RequireJS</a> package as a module system.  To
+integrate cleanly into the rest of our code base, we would like to
+specify that our code depends on device capabilities in a declarative
+fashion, much like the <a href="http://requirejs.org/docs/api.html#pageload">RequireJS DOM Ready
+plugin</a> allows us to
+specify &ldquo;the DOM being ready&rdquo; as a &ldquo;dependency&rdquo; of our module.  It
+turns out that this isn&rsquo;t very difficult.</p>
+
+<h1 id="detecting-the-cordova-environment">Detecting the Cordova environment</h1>
+
+<p>Phonegap/Cordova is set up in such a way that the initial HTML page
+contains a <code>&lt;script&gt;</code> tag which loads a non-existent <code>phonegap.js</code> or
+<code>cordova.js</code> file.  The reason for this is that each supported
+platform (Android, iOS, BlackBerry, &hellip;) has its own
+JavaScript-to-native &ldquo;bridge&rdquo; which allows JavaScript to invoke native
+code.  So the <code>phonegap.js</code> file is installed in the platform-specific
+directory when you add a new platform.  Then, when you &ldquo;build&rdquo; your
+application, your own files are installed alongside these
+previously-installed files in the platform directory, and the whole
+&ldquo;environment&rdquo; is bundled up and uploaded to the device, where the
+<code>&lt;script&gt;</code> tag works as expected.</p>
+
+<p>Because this phonegap-script is not loaded on the desktop, none of the
+variables it declares are available.  We can make use of this to
+detect the presence of Cordova, simply by checking whether
+<code>window.cordova</code> is defined.  This allows to register the
+<code>deviceready</code>-handler only when we&rsquo;re actually on the device, and
+calling the same handler with a different value on the desktop.  The
+callback handler can then dispatch to load different code depending on
+the situation.</p>
+
+<p>We have wrapped up this logic into a nice RequireJS component, which
+we are releasing today as free software.  It is dual licensed under
+the &ldquo;new BSD&rdquo; and MIT licenses.  Check it out on
+<a href="https://github.com/CodeYellowBV/deviceReady">GitHub</a>!</p>
+
+<p>Additionally, we&rsquo;ve published it as <a href="http://sindresorhus.com/bower-components/#!/search/requirejs-deviceready">a Bower
+component</a>,
+to make integrating it into your code base even easier.</p>
+
+<h1 id="case-study-database-support">Case study: database support</h1>
+
+<p>As it turns out, the native &ldquo;web view&rdquo; components in iOS and Android
+(which Cordova uses internally) make absolutely no guarantees about
+the persistence and maximum available space in <strong>any</strong> of the &ldquo;HTML5&rdquo;
+storage options.  For some versions of Android, the amount of data you
+can store in a Web SQL database and HTML Local Storage is <a href="https://groups.google.com/forum/#!searchin/phonegap/storage$20limit/phonegap/dOZjjEgwF_U/jQtG997bDN4J">as low as 5
+MB</a>.
+iOS is even worse: in newer versions it may <a href="https://issues.apache.org/jira/browse/CB-330">&ldquo;randomly&rdquo; decide to drop
+your &ldquo;persistent&rdquo; data</a>.</p>
+
+<p>This presents us with a big limitation: we want our data to stay safe,
+and we can&rsquo;t know in advance how much storage we&rsquo;ll need.  Failing at
+seemingly-arbitrary points in time is not an option!  Luckily, there
+is a relatively simple solution: we can use Phonegap plugins to access
+native code which <strong>can</strong> make those guarantees.  After some research,
+we decided that the <a href="https://github.com/lite4cordova/Cordova-SQLitePlugin">Cordova SQLite
+plugin</a> is our
+best option.  It works on iOS, Android and there&rsquo;s also a Windows
+mobile version, and it tries to offer an API which conforms to the W3C
+<a href="http://www.w3.org/TR/webdatabase/">Web SQL Database</a> standard.</p>
+
+<p>Even though Web SQL is deprecated and will likely be removed from
+browsers in the future, as things stand today it&rsquo;s our best option for
+developing in the browser and deploying to a device without making any
+changes to the application.  Web SQL does not make any guarantees
+about storage space either, but we don&rsquo;t care about that so much when
+developing in the browser.</p>
+
+<p>The SQLite plugin doesn&rsquo;t work as a &ldquo;polyfill&rdquo; but has its own
+interface endpoint: <code>window.sqlitePlugin</code>.  Furthermore, it will only
+be available from JavaScript after the <code>deviceready</code> event has fired.
+The code to make this difference &ldquo;invisible&rdquo; is very simple using our
+RequireJS plugin.  Our application&rsquo;s <code>sqldb</code> module looks like this:</p>
+
+<pre><code>:::javascript
+define(['deviceReady!'], function(isCordova) {
+  'use strict';
+
+  var dbRootObject = isCordova ? window.sqlitePlugin : window;
+
+  if (typeof dbRootObject.openDatabase == 'undefined') {
+    window.alert('Your browser has no SQL support!  Please try a Webkit-based browser');
+    return null;
+  }
+
+  var db = dbRootObject.openDatabase('my-database', '', 'My database', null),
+  // ...Some more convenience and specific schema creation code...
+  return db;
+});
+</code></pre>
+
+<p>With this, the underlying database implementation is completely
+transparent to the code that uses it, which can simply <code>require</code> the
+above module:</p>
+
+<pre><code>:::javascript
+var sqldb = require('sqldb');
+sqldb.transaction(function(t) {
+  t.executeSql('SELECT col1 FROM table WHERE col2 = ?', [value], ...);
+});
+</code></pre>
+
+<p>Like I said, support for Web SQL is unfortunately being phased out,
+and Mozilla has already taken the step of removing Web SQL from
+Firefox.  There&rsquo;s <a href="https://addons.mozilla.org/en-US/firefox/addon/html5-websql-for-firefox/">a WebSQL
+addon</a>
+which tries to restore Web SQL support, but it is too basic for our
+needs.  Our application will run in production for years to come
+(hopefully!), so being able to perform schema migrations is pretty
+essential for us. <a href="https://addons.mozilla.org/en-US/firefox/files/browse/130768/file/components/websql.js#L139">Who cares about versions,
+indeed!</a></p>
+
+<p>Anyway, with the code above we are able to run our application
+straight from the file system in Chromium.  There&rsquo;s only one more
+hurdle to overcome, and that&rsquo;s this message:</p>
+
+<blockquote>
+<p>XMLHttpRequest cannot load file:///home/peter/src/test/www/app/view/myview.html.
+Cross origin requests are only supported for HTTP</p>
+</blockquote>
+
+<p>If we run the application from <code>http://localhost</code> we won&rsquo;t see this,
+but because I really like to keep things as simple as possible I would
+prefer not to use a web server if I don&rsquo;t strictly have to.  So, I
+investigated why we get this message.  It turns out that the
+<a href="https://github.com/requirejs/text">RequireJS text plugin</a> uses
+XMLHttpRequest to load resources, whereas regular RequireJS injects
+<code>&lt;script&gt;</code> tags into the HTML.  The documentation for the text
+plugin states:</p>
+
+<blockquote>
+<p>Many browsers do not allow file:// access to just any file. You are better off serving the application from a local web server than using local file:// URLs. You will likely run into trouble otherwise.</p>
+</blockquote>
+
+<p>Never one to take other people&rsquo;s well-meant advice, I figured out that
+Firefox won&rsquo;t complain like this (probably assuming that everything
+loaded over the file:// protocol is from the same &ldquo;domain&rdquo;), and in
+Chromium you can simply pass a flag when starting it:</p>
+
+<pre><code>:::sh
+$ chromium --allow-file-access-from-files
+</code></pre>
+
+<p>And that&rsquo;s all there&rsquo;s to it!</p>
+
+
+      <div id="disqus_thread"></div>
+<script type="text/javascript">
+
+(function() {
+    
+    
+    if (window.location.hostname == "localhost") 
+        return;
+
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    var disqus_shortname = '';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the comments powered by <a href="http://disqus.com/?ref_noscript">Disqus.</a></noscript>
+</div>
+</div>
+
+  </body>
+</html>
