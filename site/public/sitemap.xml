@@ -3,444 +3,444 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://cy-techblog.codeyellow.nl/realtime/</loc>
+    <loc>https://tech.codeyellow.nl/realtime/</loc>
     <lastmod>2017-05-06T00:00:00+02:00</lastmod>
   </url>
   
   <url>
-    <loc>https://cy-techblog.codeyellow.nl/mobxspine/</loc>
+    <loc>https://tech.codeyellow.nl/mobxspine/</loc>
     <lastmod>2017-01-02T00:00:00+01:00</lastmod>
   </url>
   
   <url>
-    <loc>https://cy-techblog.codeyellow.nl/djangobinder/</loc>
+    <loc>https://tech.codeyellow.nl/djangobinder/</loc>
     <lastmod>2016-11-12T00:00:00+01:00</lastmod>
   </url>
   
   <url>
-    <loc>https://cy-techblog.codeyellow.nl/desc/series-3.5-years-of-go/</loc>
+    <loc>https://tech.codeyellow.nl/desc/series-3.5-years-of-go/</loc>
     <lastmod>2016-08-24T11:09:35+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://cy-techblog.codeyellow.nl/2016/03/accessing-your-vagrant-boxes-through-a-reverse-proxy/</loc>
+    <loc>https://tech.codeyellow.nl/2016/03/accessing-your-vagrant-boxes-through-a-reverse-proxy/</loc>
     <lastmod>2016-03-16T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://cy-techblog.codeyellow.nl/2015/10/queue/</loc>
+    <loc>https://tech.codeyellow.nl/2015/10/queue/</loc>
     <lastmod>2015-10-22T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://cy-techblog.codeyellow.nl/2015/10/refactoring-our-frontend-development-stack/</loc>
+    <loc>https://tech.codeyellow.nl/2015/10/refactoring-our-frontend-development-stack/</loc>
     <lastmod>2015-10-22T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://cy-techblog.codeyellow.nl/2015/05/tangible-breakage/</loc>
+    <loc>https://tech.codeyellow.nl/2015/05/tangible-breakage/</loc>
     <lastmod>2015-05-29T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://cy-techblog.codeyellow.nl/desc/series-hugo101/</loc>
+    <loc>https://tech.codeyellow.nl/desc/series-hugo101/</loc>
     <lastmod>2014-08-12T11:09:35+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://cy-techblog.codeyellow.nl/2014/07/kernel-backups-for-debian-security-updates/</loc>
+    <loc>https://tech.codeyellow.nl/2014/07/kernel-backups-for-debian-security-updates/</loc>
     <lastmod>2014-07-02T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://cy-techblog.codeyellow.nl/2014/05/what-your-framework-never-told-you-about-sql-injection-protections/</loc>
+    <loc>https://tech.codeyellow.nl/2014/05/what-your-framework-never-told-you-about-sql-injection-protections/</loc>
     <lastmod>2014-05-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://cy-techblog.codeyellow.nl/2014/05/just-some-days-at-the-office/</loc>
+    <loc>https://tech.codeyellow.nl/2014/05/just-some-days-at-the-office/</loc>
     <lastmod>2014-05-06T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://cy-techblog.codeyellow.nl/2014/02/rapid-cordova-application-development/</loc>
+    <loc>https://tech.codeyellow.nl/2014/02/rapid-cordova-application-development/</loc>
     <lastmod>2014-02-05T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://cy-techblog.codeyellow.nl/2013/12/passing-variables-from-server-to-client-using-requirejs/</loc>
+    <loc>https://tech.codeyellow.nl/2013/12/passing-variables-from-server-to-client-using-requirejs/</loc>
     <lastmod>2013-12-10T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://cy-techblog.codeyellow.nl/2013/11/fuelphp-released-version-1.7/</loc>
+    <loc>https://tech.codeyellow.nl/2013/11/fuelphp-released-version-1.7/</loc>
     <lastmod>2013-11-19T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://cy-techblog.codeyellow.nl/2013/09/using-trello-for-our-development-workflow/</loc>
+    <loc>https://tech.codeyellow.nl/2013/09/using-trello-for-our-development-workflow/</loc>
     <lastmod>2013-09-30T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://cy-techblog.codeyellow.nl/2013/07/migration-transactions/</loc>
+    <loc>https://tech.codeyellow.nl/2013/07/migration-transactions/</loc>
     <lastmod>2013-07-15T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://cy-techblog.codeyellow.nl/2013/07/coding-style-guide/</loc>
+    <loc>https://tech.codeyellow.nl/2013/07/coding-style-guide/</loc>
     <lastmod>2013-07-05T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://cy-techblog.codeyellow.nl/2013/06/fuelphp-released-version-1.6.1/</loc>
+    <loc>https://tech.codeyellow.nl/2013/06/fuelphp-released-version-1.6.1/</loc>
     <lastmod>2013-06-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://cy-techblog.codeyellow.nl/2013/05/elementary-os-luna-beta-2-released/</loc>
+    <loc>https://tech.codeyellow.nl/2013/05/elementary-os-luna-beta-2-released/</loc>
     <lastmod>2013-05-06T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://cy-techblog.codeyellow.nl/2013/05/fuelphp-released-version-1.6/</loc>
+    <loc>https://tech.codeyellow.nl/2013/05/fuelphp-released-version-1.6/</loc>
     <lastmod>2013-05-03T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://cy-techblog.codeyellow.nl/2013/04/raspberry-pi-prototyping-development/</loc>
+    <loc>https://tech.codeyellow.nl/2013/04/raspberry-pi-prototyping-development/</loc>
     <lastmod>2013-04-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://cy-techblog.codeyellow.nl/2013/04/the-ideal-development-image/</loc>
+    <loc>https://tech.codeyellow.nl/2013/04/the-ideal-development-image/</loc>
     <lastmod>2013-04-11T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://cy-techblog.codeyellow.nl/2013/03/new-development-and-test-environment-installed/</loc>
+    <loc>https://tech.codeyellow.nl/2013/03/new-development-and-test-environment-installed/</loc>
     <lastmod>2013-03-27T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://cy-techblog.codeyellow.nl/about/</loc>
+    <loc>https://tech.codeyellow.nl/about/</loc>
     <lastmod>2012-11-10T00:00:00+01:00</lastmod>
   </url>
   
   <url>
-    <loc>https://cy-techblog.codeyellow.nl/tags/app/</loc>
+    <loc>https://tech.codeyellow.nl/tags/app/</loc>
     <lastmod>2015-05-29T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://cy-techblog.codeyellow.nl/tags/backup/</loc>
+    <loc>https://tech.codeyellow.nl/tags/backup/</loc>
     <lastmod>2014-07-02T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://cy-techblog.codeyellow.nl/blog/</loc>
+    <loc>https://tech.codeyellow.nl/blog/</loc>
     <lastmod>2016-03-16T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://cy-techblog.codeyellow.nl/tags/boot/</loc>
+    <loc>https://tech.codeyellow.nl/tags/boot/</loc>
     <lastmod>2014-07-02T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://cy-techblog.codeyellow.nl/</loc>
+    <loc>https://tech.codeyellow.nl/</loc>
     <lastmod>2017-05-06T00:00:00+02:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://cy-techblog.codeyellow.nl/tags/cakephp/</loc>
+    <loc>https://tech.codeyellow.nl/tags/cakephp/</loc>
     <lastmod>2014-05-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://cy-techblog.codeyellow.nl/tags/codeigniter/</loc>
+    <loc>https://tech.codeyellow.nl/tags/codeigniter/</loc>
     <lastmod>2014-05-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://cy-techblog.codeyellow.nl/code/</loc>
+    <loc>https://tech.codeyellow.nl/code/</loc>
     <lastmod>2017-05-06T00:00:00+02:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://cy-techblog.codeyellow.nl/tags/cordova/</loc>
+    <loc>https://tech.codeyellow.nl/tags/cordova/</loc>
     <lastmod>2014-02-05T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://cy-techblog.codeyellow.nl/tags/debian/</loc>
+    <loc>https://tech.codeyellow.nl/tags/debian/</loc>
     <lastmod>2014-07-02T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://cy-techblog.codeyellow.nl/desc/</loc>
+    <loc>https://tech.codeyellow.nl/desc/</loc>
     <lastmod>2016-08-24T11:09:35+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://cy-techblog.codeyellow.nl/tags/development/</loc>
+    <loc>https://tech.codeyellow.nl/tags/development/</loc>
     <lastmod>2014-05-06T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://cy-techblog.codeyellow.nl/tags/development-environment/</loc>
+    <loc>https://tech.codeyellow.nl/tags/development-environment/</loc>
     <lastmod>2014-05-06T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://cy-techblog.codeyellow.nl/tags/development-image/</loc>
+    <loc>https://tech.codeyellow.nl/tags/development-image/</loc>
     <lastmod>2013-04-11T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://cy-techblog.codeyellow.nl/tags/devops/</loc>
+    <loc>https://tech.codeyellow.nl/tags/devops/</loc>
     <lastmod>2016-03-16T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://cy-techblog.codeyellow.nl/tags/elementary-os/</loc>
+    <loc>https://tech.codeyellow.nl/tags/elementary-os/</loc>
     <lastmod>2013-05-06T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://cy-techblog.codeyellow.nl/tags/frameworks/</loc>
+    <loc>https://tech.codeyellow.nl/tags/frameworks/</loc>
     <lastmod>2014-05-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://cy-techblog.codeyellow.nl/tags/fuelphp/</loc>
+    <loc>https://tech.codeyellow.nl/tags/fuelphp/</loc>
     <lastmod>2015-10-22T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://cy-techblog.codeyellow.nl/tags/fun/</loc>
+    <loc>https://tech.codeyellow.nl/tags/fun/</loc>
     <lastmod>2014-05-06T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://cy-techblog.codeyellow.nl/tags/general/</loc>
+    <loc>https://tech.codeyellow.nl/tags/general/</loc>
     <lastmod>2014-05-06T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://cy-techblog.codeyellow.nl/tags/initrd/</loc>
+    <loc>https://tech.codeyellow.nl/tags/initrd/</loc>
     <lastmod>2014-07-02T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://cy-techblog.codeyellow.nl/tags/javascript/</loc>
+    <loc>https://tech.codeyellow.nl/tags/javascript/</loc>
     <lastmod>2015-10-22T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://cy-techblog.codeyellow.nl/tags/kernel/</loc>
+    <loc>https://tech.codeyellow.nl/tags/kernel/</loc>
     <lastmod>2014-07-02T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://cy-techblog.codeyellow.nl/tags/laravel/</loc>
+    <loc>https://tech.codeyellow.nl/tags/laravel/</loc>
     <lastmod>2014-05-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://cy-techblog.codeyellow.nl/tags/linux/</loc>
+    <loc>https://tech.codeyellow.nl/tags/linux/</loc>
     <lastmod>2013-05-06T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://cy-techblog.codeyellow.nl/tags/lithium/</loc>
+    <loc>https://tech.codeyellow.nl/tags/lithium/</loc>
     <lastmod>2014-05-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://cy-techblog.codeyellow.nl/tags/migration/</loc>
+    <loc>https://tech.codeyellow.nl/tags/migration/</loc>
     <lastmod>2013-07-15T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://cy-techblog.codeyellow.nl/tags/open-source/</loc>
+    <loc>https://tech.codeyellow.nl/tags/open-source/</loc>
     <lastmod>2015-10-22T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://cy-techblog.codeyellow.nl/tags/php/</loc>
+    <loc>https://tech.codeyellow.nl/tags/php/</loc>
     <lastmod>2015-10-22T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://cy-techblog.codeyellow.nl/tags/printers/</loc>
+    <loc>https://tech.codeyellow.nl/tags/printers/</loc>
     <lastmod>2013-04-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://cy-techblog.codeyellow.nl/tags/projects/</loc>
+    <loc>https://tech.codeyellow.nl/tags/projects/</loc>
     <lastmod>2015-10-22T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://cy-techblog.codeyellow.nl/tags/prototyping/</loc>
+    <loc>https://tech.codeyellow.nl/tags/prototyping/</loc>
     <lastmod>2013-04-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://cy-techblog.codeyellow.nl/tags/proxmox/</loc>
+    <loc>https://tech.codeyellow.nl/tags/proxmox/</loc>
     <lastmod>2013-04-11T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://cy-techblog.codeyellow.nl/tags/python/</loc>
+    <loc>https://tech.codeyellow.nl/tags/python/</loc>
     <lastmod>2013-04-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://cy-techblog.codeyellow.nl/tags/queue/</loc>
+    <loc>https://tech.codeyellow.nl/tags/queue/</loc>
     <lastmod>2015-10-22T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://cy-techblog.codeyellow.nl/tags/raspberry-pi/</loc>
+    <loc>https://tech.codeyellow.nl/tags/raspberry-pi/</loc>
     <lastmod>2013-04-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://cy-techblog.codeyellow.nl/tags/requirejs/</loc>
+    <loc>https://tech.codeyellow.nl/tags/requirejs/</loc>
     <lastmod>2013-12-10T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://cy-techblog.codeyellow.nl/tags/rpi-development/</loc>
+    <loc>https://tech.codeyellow.nl/tags/rpi-development/</loc>
     <lastmod>2013-04-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://cy-techblog.codeyellow.nl/tags/ruby/</loc>
+    <loc>https://tech.codeyellow.nl/tags/ruby/</loc>
     <lastmod>2016-03-16T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://cy-techblog.codeyellow.nl/tags/security/</loc>
+    <loc>https://tech.codeyellow.nl/tags/security/</loc>
     <lastmod>2014-05-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://cy-techblog.codeyellow.nl/tags/servers/</loc>
+    <loc>https://tech.codeyellow.nl/tags/servers/</loc>
     <lastmod>2013-03-27T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://cy-techblog.codeyellow.nl/tags/software-development/</loc>
+    <loc>https://tech.codeyellow.nl/tags/software-development/</loc>
     <lastmod>2015-10-22T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://cy-techblog.codeyellow.nl/tags/sql/</loc>
+    <loc>https://tech.codeyellow.nl/tags/sql/</loc>
     <lastmod>2013-07-15T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://cy-techblog.codeyellow.nl/tags/sql-injection/</loc>
+    <loc>https://tech.codeyellow.nl/tags/sql-injection/</loc>
     <lastmod>2014-05-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://cy-techblog.codeyellow.nl/tags/tablet/</loc>
+    <loc>https://tech.codeyellow.nl/tags/tablet/</loc>
     <lastmod>2015-05-29T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://cy-techblog.codeyellow.nl/tags/</loc>
+    <loc>https://tech.codeyellow.nl/tags/</loc>
     <lastmod>2015-05-29T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://cy-techblog.codeyellow.nl/tags/tools/</loc>
+    <loc>https://tech.codeyellow.nl/tags/tools/</loc>
     <lastmod>2016-03-16T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://cy-techblog.codeyellow.nl/tags/transaction/</loc>
+    <loc>https://tech.codeyellow.nl/tags/transaction/</loc>
     <lastmod>2013-07-15T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://cy-techblog.codeyellow.nl/tags/trello/</loc>
+    <loc>https://tech.codeyellow.nl/tags/trello/</loc>
     <lastmod>2013-09-30T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://cy-techblog.codeyellow.nl/tags/updates/</loc>
+    <loc>https://tech.codeyellow.nl/tags/updates/</loc>
     <lastmod>2014-07-02T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://cy-techblog.codeyellow.nl/tags/vagrant/</loc>
+    <loc>https://tech.codeyellow.nl/tags/vagrant/</loc>
     <lastmod>2016-03-16T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://cy-techblog.codeyellow.nl/tags/werkwijze/</loc>
+    <loc>https://tech.codeyellow.nl/tags/werkwijze/</loc>
     <lastmod>2013-09-30T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://cy-techblog.codeyellow.nl/tags/workflows/</loc>
+    <loc>https://tech.codeyellow.nl/tags/workflows/</loc>
     <lastmod>2013-09-30T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>

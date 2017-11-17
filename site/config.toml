@@ -1,4 +1,4 @@
-baseurl = "https://cy-techblog.codeyellow.nl/"
+baseurl = "https://tech.codeyellow.nl/"
 languageCode = "en-us"
 title = "CY Tech"
 theme = "hyde"
