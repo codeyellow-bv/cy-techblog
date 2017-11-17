@@ -1,4 +1,4 @@
-baseurl = "https://cy-techblog.netlify.com/"
+baseurl = "https://cy-techblog.codeyellow.nl/"
 languageCode = "en-us"
 title = "CY Tech"
 theme = "hyde"
